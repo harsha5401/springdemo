@@ -12,7 +12,7 @@ public class DemoApplication {
 	@RestController
 public class HelloController {
 
-    @GetMapping("/hello")
+    @GetMapping("/dxc")
     public String helloWorld() {
         return "Hello, World!";
     }
