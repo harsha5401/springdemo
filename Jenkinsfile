@@ -4,6 +4,8 @@ pipeline {
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "538808576863.dkr.ecr.us-east-1.amazonaws.com/jenkinsecr"
         vprofileRegistry = "https://538808576863.dkr.ecr.us-east-1.amazonaws.com"
+        cluster = "ecsclus"
+        service = "serviceappecs"
     }
     tools{
         maven 'maveninstall'
@@ -36,7 +38,13 @@ pipeline {
             }
           }
      }
-
+      stage('Deploy to ecs') {
+          steps {
+        withAWS(credentials: 'awscreds', region: 'us-east-1') {
+          sh 'aws ecs update-service --cluster ${cluster} --service ${service} --force-new-deployment'
+        }
+      }  
+      }
 //         stage('Build docker image'){
 //             steps{
 //                 script{
