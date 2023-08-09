@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registryCredential = 'ecr:us-east-:awscreds'
+        registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "538808576863.dkr.ecr.us-east-1.amazonaws.com/jenkinsecr"
         vprofileRegistry = "538808576863.dkr.ecr.us-east-1.amazonaws.com"
     }
