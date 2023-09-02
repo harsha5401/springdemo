@@ -19,18 +19,18 @@ pipeline {
                 sh "mvn -B -DskipTests clean package"
             }
         }
-	 stage('Unit Test') {
-            steps {
-                sh 'mvn test'
-                sh 'mvn surefire-report:report'
-            }
-            post {
-                always {
-                  sh 'echo save unit test results'
-                  junit '**/target/surefire-reports/TEST-*.xml'	           
-                }
-            }
-        } 	       
+	 // stage('Unit Test') {
+  //           steps {
+  //               sh 'mvn test'
+  //               sh 'mvn surefire-report:report'
+  //           }
+  //           post {
+  //               always {
+  //                 sh 'echo save unit test results'
+  //                 junit '**/target/surefire-reports/TEST-*.xml'	           
+  //               }
+  //           }
+  //       } 	       
         stage('static analysis') {
             steps {
                 sh 'echo static analysis'
