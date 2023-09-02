@@ -4,7 +4,7 @@ pipeline {
         registryCredential = 'ecr:us-east-1:awscreds'
         appRegistry = "538808576863.dkr.ecr.us-east-1.amazonaws.com/jenkinsecr"
         vprofileRegistry = "https://538808576863.dkr.ecr.us-east-1.amazonaws.com"
-        SONARHOST = "http://54.197.15.114:9000/projects"
+        SONARHOST = "https://usplsvulx1005.elabs.svcs.entsvcs.com"
 	SONARTOKEN = credentials("sonarkey")
         cluster = "ecsclus"
         service = "serviceappecs"
