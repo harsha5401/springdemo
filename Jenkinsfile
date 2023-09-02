@@ -5,7 +5,7 @@ pipeline {
         appRegistry = "538808576863.dkr.ecr.us-east-1.amazonaws.com/jenkinsecr"
         vprofileRegistry = "https://538808576863.dkr.ecr.us-east-1.amazonaws.com"
         SONARHOST = "http://54.197.15.114:9000/projects"
-	    SONARTOKEN = credentials("sonarkey")
+	SONARTOKEN = credentials("sonarkey")
         cluster = "ecsclus"
         service = "serviceappecs"
     }
@@ -19,6 +19,18 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+	 stage('Unit Test') {
+            steps {
+                sh 'mvn test'
+                sh 'mvn surefire-report:report'
+            }
+            post {
+                always {
+                  sh 'echo save unit test results'
+                  junit '**/target/surefire-reports/TEST-*.xml'	           
+                }
+            }
+        } 	       
         stage('static analysis') {
             steps {
                 sh 'echo static analysis'
