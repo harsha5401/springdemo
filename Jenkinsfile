@@ -16,7 +16,7 @@ pipeline {
         stage('Build Maven'){
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/harsha5401/springdemo']]])
-                sh 'mvn clean install'
+                sh "mvn -B -DskipTests clean package"
             }
         }
 	 stage('Unit Test') {
